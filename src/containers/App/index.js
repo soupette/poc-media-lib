@@ -122,7 +122,7 @@ function App() {
                 />
               </Col>
               <Col md={12}>
-                <Inputs name="isMask" type="bool" value={isMask} onChange={handleChange} />
+                <Inputs name="isMask" label="apply a mask" type="bool" value={isMask} onChange={handleChange} />
               </Col>
               <Col md={12}>
                 <Button label="Rotate" type="button" onClick={handleRotate} />
