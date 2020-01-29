@@ -32,6 +32,18 @@ const Canvas = createGlobalStyle`
 
     return '';
   }}
+
+  // // .cropper-container
+  // .cropper-crop-box {
+  //   position: relative;
+  // }
+
+  
+  .pre {
+    position: absolute;
+    // top: 0;
+    color: white;
+  }
 `;
 
 Canvas.defaultProps = {};

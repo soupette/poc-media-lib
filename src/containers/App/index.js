@@ -23,6 +23,8 @@ import init from './init';
 function App() {
   const [reducerState, dispatch] = useReducer(reducer, initialState, init);
   const [cropResult, setCropResult] = useState(null);
+  const [right, setRight] = useState(0);
+  const [bottom, setBottom] = useState(0);
   const { cropMode, isMask } = reducerState.toJS();
   const imgRef = createRef();
   let cropper = useRef();
@@ -54,6 +56,13 @@ function App() {
       let ratio = cropMode === 'round' || cropMode === 'square' ? 1 : 16 / 9;
 
       cropper.current.setAspectRatio(ratio);
+      const cropBow = cropper.current.getCropBoxData();
+
+      const right = cropBow.left;
+      const bottom = cropBow.top;
+      console.log({ right, bottom, c: cropBow.left, cropBow });
+      setRight(right);
+      setBottom(bottom);
     }
   }, [cropMode, isMask]);
 
@@ -76,6 +85,8 @@ function App() {
         canvas = getMaskedCanvas(croppedCanvas, imgRef.current, cropper.current);
       }
 
+      console.log(cropper.current.getCropBoxData());
+
       setCropResult(canvas.toDataURL());
     }
   };
@@ -95,6 +106,9 @@ function App() {
         <Row>
           <Col md={10} style={{ maxHeight: 500 }}>
             <img src={Pic} ref={imgRef} alt="kk" />
+            <div className="pre" style={{ position: 'absolute', bottom, right }}>
+              ooo
+            </div>
           </Col>
           <Col md={2}>
             <Row>
